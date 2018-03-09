@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.python.ops import rnn,rnn_cell
 import os
-def get_params(data_dir, dir, test_state = None):
+def get_params(data_dir, dir, test_state=None):
     param={}
     dir= str(dir)
     param['train_dir_loc']=data_dir+"/train/"

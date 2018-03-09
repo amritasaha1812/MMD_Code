@@ -7,8 +7,7 @@ import pickle as pkl
 import random
 import os.path
 import numpy as np
-from params_v1 import * # FOR V1 DATASET
-from params_v2 import * # FOR V2 DATASET
+from params import *
 import nltk
 from read_data_task1 import *
 from hierarchy_model_text import *
@@ -299,8 +298,8 @@ def run_training(param):
     
 
 def main():
-    data_dir = ''
-    param = get_params(data_dir, sys.argv[1])
+    data_dir = sys.argv[1]
+    param = get_params(data_dir, sys.argv[2])
     if os.path.exists(param['train_data_file']) and os.path.exists(param['valid_data_file']) and os.path.exists(param['test_data_file']):
         print 'dictionary already exists'
         sys.stdout.flush()
