@@ -8,8 +8,7 @@ import random
 import os.path
 import params
 import numpy as np
-from params_v1 import * # FOR V1 DATASET
-from params_v2 import * # FOR V2 DATASET
+from params import * 
 import nltk
 from read_data_task2 import *
 from hierarchy_model import *
