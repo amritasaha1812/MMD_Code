@@ -1,6 +1,9 @@
-#rm $1/dump/*
-#cp params.py $1
-#python run_model_task2.py $1
-mkdir $1/e_test_state
-mkdir $1/o_test_state
-jbsub -mem 200g -queue p8_12h -err $1/e_test_state/e_test_state_$4.txt -out $1/o_test_state/o_test_state_$4.txt -require k80 /dccstor/cssblr/amrita/tflow0.10/bin/python run_test_task2.py $1 $2 $3 $4 $5
+########################################
+# EXAMPLE RUN: ./run_test_state.sh <DATA_DIR> <DUMP_DIR> 1 <TEST_STATE> (for V1 dataset) and ./run.sh <DATA_DIR> <DUMP_DIR> 2 <TEST_STATE>(for V2 dataset)
+# TEST_STATE can be either of the following: do_not_like_earlier_show_result,do_not_like_n_show_result,do_not_like_show_result,filter_results,like_earlier_show_result,like_n_show_result,like_show_result,show_orientation,show_similar_to,sort_results
+########################################
+cp params_test_v$3.py params_test.py
+mkdir $2/e_test_state
+mkdir $2/o_test_state
+#jbsub -mem 200g -queue p8_12h -err $2/e_test_state/e_test_state_$4.txt -out $2/o_test_state/o_test_state_$4.txt -require k80 python run_test_task1.py $1 $2 $3 $4
+python run_test_task2.py $1 $2 $4
