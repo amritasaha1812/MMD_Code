@@ -231,27 +231,3 @@ def check_padding(batch_text_dict, batch_image_dict, batch_target_pos_dict, batc
     batch_mask_negs_dict = batch_padding_mask_negs(batch_mask_negs_dict, max_negs, pad_size)
     return batch_text_dict, batch_image_dict, batch_target_pos_dict, batch_target_negs_dict, batch_mask_negs_dict
 
-if __name__=="__main__":
-    param = get_params(sys.argv[1])
-    train_dir_loc = param['train_dir_loc']
-    valid_dir_loc = param['valid_dir_loc']
-    medium_test_dir_loc = '/dccstor/cssblr/amrita/multimodal_dialogue/cf/latest/cf/multimodal_dialogue/dialogue_splits/test_medium/'
-    hard_test_dir_loc = '/dccstor/cssblr/amrita/multimodal_dialogue/cf/latest/cf/multimodal_dialogue/dialogue_splits/test_hard/' 
-    #test_dir_loc = param['test_dir_loc'].replace('test','test_smallest')
-    dump_dir_loc = param['dump_dir_loc']
-    vocab_file = param['vocab_file']
-    vocab_stats_file = param['vocab_stats_file']
-    vocab_freq_cutoff = param['vocab_freq_cutoff']   
-    medium_test_data_file = param['test_data_file'].replace('test','test_medium')
-    hard_test_data_file = param['test_data_file'].replace('test','test_hard') 
-    #test_data_file = param['test_data_file'].replace('test','test_smallest')
-    max_len = param['max_len']
-    max_images = param['max_images']
-    max_negs = param['max_negs']
-    max_utter = int(sys.argv[2])
-    preparedata = PrepareData(max_utter, max_len, max_images, max_negs, start_symbol_index, end_symbol_index, unk_symbol_index, pad_symbol_index, "image", cutoff=vocab_freq_cutoff)
-    if os.path.isfile(vocab_file):
-        print 'found existing vocab file in '+str(vocab_file)+', ... reading from there'
-    preparedata.prepare_data(medium_test_dir_loc, vocab_file, vocab_stats_file, os.path.join(dump_dir_loc, "test_medium"), medium_test_data_file, False)     
-    preparedata.prepare_data(hard_test_dir_loc, vocab_file, vocab_stats_file, os.path.join(dump_dir_loc, "test_hard"), hard_test_data_file, False) 
-    #preparedata.prepare_data(test_dir_loc, vocab_file, vocab_stats_file, os.path.join(dump_dir_loc, "test_smallest"), test_data_file, False)

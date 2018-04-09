@@ -186,8 +186,10 @@ def run_test(param):
     
 
 def main():
-    data_dir = ''
-    param = get_params(data_dir, sys.argv[1], sys.argv[2])
+    if len(sys.argv)==3:
+    	param = get_params(sys.argv[1], sys.argv[2], None)
+    else:
+	param = get_params(sys.argv[1], sys.argv[2], sys.argv[3])
     print param
     if os.path.exists(param['train_data_file']) and os.path.exists(param['valid_data_file']) and os.path.exists(param['test_data_file']):
         print 'dictionary already exists'

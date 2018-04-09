@@ -208,7 +208,7 @@ def run_test(param):
 
 def main():
     data_dir=sys.argv[1]
-    if len(sys.argv)<3:
+    if len(sys.argv)==3:
 	param = get_params(data_dir, sys.argv[2])
     else:
     	param = get_params(data_dir, sys.argv[2], sys.argv[3])
