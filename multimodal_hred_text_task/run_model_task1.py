@@ -217,6 +217,7 @@ def run_training(param):
     f_out = open(param['terminal_op'],'w')
     sys.stdout=f_out
     check_dir(param)
+    load_image_representation(param['image_annoy_dir'])
     n_batches = int(math.ceil(float(len(train_data))/float(param['batch_size'])))
     print 'number of batches ', n_batches, 'len train data ', len(train_data), 'batch size' , param['batch_size']
     model_file = os.path.join(param['model_path'],"best_model")

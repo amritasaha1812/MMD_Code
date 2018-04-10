@@ -152,6 +152,7 @@ def run_test(param):
     f_out = open(param['terminal_op'],'w')
     sys.stdout=f_out
     check_dir(param)
+    load_image_representation(param['image_annoy_dir'])
     with tf.Graph().as_default():
         model = Hierarchical_seq_model('image', param['text_embedding_size'], param['image_embedding_size'], param['image_rep_size'], param['cell_size'], param['cell_type'], param['batch_size'], param['learning_rate'], param['max_len'], param['max_utter'], param['max_images'], param['max_negs'], param['patience'], param['decoder_words'], param['max_gradient_norm'], param['activation'], param['output_activation'])   
         model.create_placeholder()

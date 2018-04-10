@@ -8,15 +8,13 @@ start_symbol_index = 0
 end_symbol_index = 1
 unk_symbol_index = 2
 pad_symbol_index = 3
-
-#BELOW LINE IS JUST FOR THE SAMPLE DATA.. THIS WOULD BE REPLACED WITH AN ANNOY INDEX BASED LOADING
-#sample_image_index = pkl.load(open('true_data_6k/sample_image_index.pkl'))
-
-#BELOW LINES ARE FOR THE ACTUAL ANNOY INDEX BASED LOADING.. COMMENT OUT THE ABOVE LINES AND UNCOMMENT THE FOLLOWING
 from annoy import AnnoyIndex
-annoyIndex = AnnoyIndex(4096, metric='euclidean')
-annoyIndex.load('../multimodal_dialogue/image_annoy_index/annoy.ann')
-annoyPkl = pkl.load(open('../multimodal_dialogue/image_annoy_index/FileNameMapToIndex.pkl'))
+
+annoyIndex = None
+def load_image_representation(image_annoy_dir):
+    annoyInde = AnnoyIndex(4096, metric='euclidean')
+    annoyIndex.load(image_annoy_dir+'/annoy.ann')
+    annoyPkl = pkl.load(open(image_annoy_dir+'/ImageUrlToIndex.pkl'))
 
 def get_dialog_dict(param, is_test=False):
     train_dir_loc = param['train_dir_loc']

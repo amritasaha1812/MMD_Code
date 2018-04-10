@@ -1,0 +1,6 @@
+Step1: Download the data from https://drive.google.com/file/d/1xHQP5-EN7zpuq_KwOjKshnWxyTUBPO04/view?usp=sharing and extract it to a folder
+Step2: Download the image_annoy_index from https://drive.google.com/file/d/1eUc4lt3PA_cQsNlhe3BTdZSy-Htc5Qna/view?usp=sharing and extract it to a folder named 'image_annoy_index' which is put in the same path as the two folders 'multimodal_hred_image_task' and 'multimodal_hred_text_task' 
+Step3: Create a folder named Target_Model where the model would be dumped. Further create two folders inside Target_Model, 'dump' and 'model' (e.g. 'mkdir Target_Model/dump' and 'mkdir Target_Model/model') 
+Step4: Execute run.sh with the data dir and the location to the data folder and dump_dir as 'Target_Model' and V1 or V2 as appropriate. This will run the training of the model. Follow the example provided in run.sh
+Step5: Execute run_test.sh with similar arguments as above for running the test code. Follow the example provided in run_test.sh
+Step6: Execute run_test_state.sh with similar arguments as run_test.sh but with an additional parameter of question-type (as shown in run_test_state.sh) in order to get the state-wise testing of the different question-types or dialog states

@@ -10,6 +10,7 @@ def get_params(data_dir, dir, test_state=None):
     param['dump_dir_loc']=dir+"/dump/"
     param['test_output_dir']=dir+"/test_output/"
     param['vocab_file']=dir+"/vocab.pkl"
+    param['image_annoy_dir']='../image_annoy_index/'
     param['train_data_file']=dir+"/dump/train_data_file.pkl"
     param['valid_data_file']=dir+"/dump/valid_data_file.pkl"
     if test_state is None:

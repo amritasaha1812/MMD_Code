@@ -9,56 +9,14 @@ end_symbol_index = 1
 unk_symbol_index = 2
 pad_symbol_index = 3
 import os
-'''
-def get_params(dir):
-    param={}
-    dir= str(dir)
-    param['train_dir_loc']=dir+"/train/"
-    param['valid_dir_loc']=dir+"/valid/"
-    param['test_dir_loc']=dir+"/test/"
-    param['dump_dir_loc']=dir+"/dump/"
-    param['test_output_dir']=dir+"/test_output/"
-    param['vocab_file']=dir+"/vocab.pkl"
-    param['train_data_file']=dir+"/dump/train_data_file.pkl"
-    param['valid_data_file']=dir+"/dump/valid_data_file.pkl"
-    param['test_data_file']=dir+"/dump/test_data_file.pkl"
-    param['vocab_file']=dir+"/vocab.pkl"
-    param['vocab_stats_file']=dir+"/vocab_stats.pkl"
-    param['model_path']=dir+"/model"
-    param['terminal_op']=dir+"/terminal_output.txt"
-    param['logs_path']=dir+"/log"
-    param['text_embedding_size'] = 512
-    param['image_rep_size'] = 4096
-    param['image_embedding_size'] = 512
-    param['activation'] = None #tf.tanh
-    param['output_activation'] = None #tf.nn.softmax
-    param['cell_size']=512
-    param['cell_type']=None #rnn_cell.GRUCell
-    param['batch_size']=64
-    param['vocab_freq_cutoff']=2
-    param['learning_rate']=0.0004
-    param['patience']=200
-    param['early_stop']=100
-    param['max_epochs']=1000000
-    param['max_len']=20
-    param['max_images']=5
-    param['max_utter']=5
-    param['print_train_freq']=1000
-    param['show_grad_freq']=20000
-    param['valid_freq']=10000
-    param['max_gradient_norm']=0.1
-    param['train_loss_incremenet_tolerance']=0.01
-    return param
-'''
-#BELOW LINE IS JUST FOR THE SAMPLE DATA.. THIS WOULD BE REPLACED WITH AN ANNOY INDEX BASED LOADING
-#sample_image_index = pkl.load(open('true_data_25k/sample_image_index.pkl'))
-
-#BELOW LINES ARE FOR THE ACTUAL ANNOY INDEX BASED LOADING.. COMMENT OUT THE ABOVE LINES AND UNCOMMENT THE FOLLOWING
 from annoy import AnnoyIndex
 import cPickle as pkl
-annoyIndex = AnnoyIndex(4096, metric='euclidean')
-annoyIndex.load('../multimodal_dialogue/image_annoy_index/annoy.ann')
-annoyPkl = pkl.load(open('../multimodal_dialogue/image_annoy_index/FileNameMapToIndex.pkl'))
+
+annoyIndex = None
+def load_image_representation(image_annoy_dir):
+    annoyInde = AnnoyIndex(4096, metric='euclidean')
+    annoyIndex.load(image_annoy_dir+'/annoy.ann')
+    annoyPkl = pkl.load(open(image_annoy_dir+'/ImageUrlToIndex.pkl'))
 
 def get_dialog_dict(param, is_test = False):
     train_dir_loc = param['train_dir_loc']
